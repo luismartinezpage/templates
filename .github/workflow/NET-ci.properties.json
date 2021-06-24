@@ -1,0 +1,8 @@
+{
+    "name": "NET CI Workflow",
+    "description": "NET CI workflow template.",
+    "iconName": "icons/net_logo.svg",
+    "categories": [
+        "c#"
+    ]
+}

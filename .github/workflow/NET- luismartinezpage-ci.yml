@@ -1,0 +1,37 @@
+name: NET CI
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build NET
+    env:
+        APP_NAME: ${{ env.APP_NAME }}
+        
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:            
+            source-url: https://nuget.pkg.github.com/luismartinezpage/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.UPLOAD_PACKAGE_TOKEN }}
+
+      - name: Variables
+        run: |
+            echo Variable: ${{ env.APP_NAME }}     
+            echo Variable: $APP_NAME
+        
+      - name: Build application
+        run: dotnet build ${{ env.APP_NAME }}
+      
+      - name: Create the package
+        run: dotnet pack --configuration Release ${{ env.APP_NAME }}
+      
+      - name: Publish the package to GPR
+        run: dotnet nuget push ${{ env.APP_NAME }}/bin/Release/*.nupkg
+        
+        
+        
