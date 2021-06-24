@@ -1,8 +1,8 @@
-name: NET CI
+name: NET luismartinezpage CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ $default-branch ]
 
 jobs:
   build:
