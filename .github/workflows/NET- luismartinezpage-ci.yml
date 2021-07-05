@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build NET
     env:
-        APP_NAME: ${{ env.APP_NAME }}
+        APP_NAME: NET - NEW APP NAME
         
     steps:
       - uses: actions/checkout@v2
